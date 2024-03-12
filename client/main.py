@@ -4,7 +4,7 @@ from client.components.navbar import navbar
 
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.LUX],suppress_callback_exceptions=True)
-app.title = 'Nariman Point'
+app.title = 'Sicomoro'
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
@@ -13,4 +13,4 @@ app.layout = html.Div([
 ])
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server()
