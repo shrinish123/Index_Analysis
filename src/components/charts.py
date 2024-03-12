@@ -1,6 +1,6 @@
 from dash import html, dcc, callback, Output, Input
 from indices_analysis.compare_nifty_indices_return_divergence import plot_charts
-from client.utils import get_all_indices
+from src.utils import get_all_indices
 # from indices_analysis.update_data import updateData
 import dash_bootstrap_components as dbc
 

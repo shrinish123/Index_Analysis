@@ -1,8 +1,8 @@
 from dash import callback, Output, Input
 import dash_bootstrap_components as dbc
-from client.components.returns import returns
-from client.components.dashboard import dashboard
-from client.components.charts import charts
+from src.components.returns import returns
+from src.components.dashboard import dashboard
+from src.components.charts import charts
 
 navbar = dbc.NavbarSimple(
     children=[

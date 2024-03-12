@@ -1,7 +1,7 @@
 from dash import html
 import dash_bootstrap_components as dbc
 from indices_analysis.constants import broad,sector,theme,smartBeta
-from client.utils import build_table
+from src.utils import build_table
 
 
 tabs = dbc.Tabs(
