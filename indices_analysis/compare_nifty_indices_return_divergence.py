@@ -33,7 +33,8 @@ def CalReturns(df):
 #Return Divergence
 def ReturnDivergence(INDEX,BENCHMARK,index,benchmark):
   Plot_List = [] 
- 
+  
+  
   InnerJoint = pd.merge(INDEX,BENCHMARK,on = "Date", how = "inner")
   for n in Year:
     InnerJoint["%s Year Return Divergence" %str(n)] = InnerJoint["%s Year Returns_x" %str(n)] - InnerJoint["%s Year Returns_y" %str(n)]
