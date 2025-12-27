@@ -16,7 +16,7 @@ export default function AppNavbar() {
           fontFamily: '"Nunito Sans", -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
           fontWeight: 600,
           letterSpacing: '2px'
-        }}>SICOMORO</Navbar.Brand>
+        }}>PRAVIA</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">

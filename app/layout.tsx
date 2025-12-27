@@ -11,7 +11,7 @@ const nunito = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Sicomoro",
+  title: "Pravia",
   description: "Index Analysis Dashboard",
 };
 

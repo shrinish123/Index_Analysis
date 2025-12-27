@@ -1,4 +1,4 @@
-# Sicomoro - Index Analysis Dashboard
+# Pravia - Index Analysis Dashboard
 
 This project is a Next.js application for analyzing financial indices.
 

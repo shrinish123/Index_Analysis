@@ -52,7 +52,6 @@ export default function DashboardTable() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ indices, isBroad }),
-          cache: 'no-store' // Ensure no caching
         });
         const result = await response.json();
         if (Array.isArray(result)) {

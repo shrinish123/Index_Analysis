@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getIndexData } from '@/lib/data-loader';
+import { getMultipleIndicesData } from '@/lib/data-loader';
 import { calculateDivergence } from '@/lib/analysis';
 
 export async function POST(request: Request) {
@@ -11,33 +11,19 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Indices array is required' }, { status: 400 });
     }
 
-    // 1. Load all data
-    const dataMap = new Map();
-    const loadPromises = indices.map(async (name: string) => {
-      try {
-        const data = await getIndexData(name);
-        dataMap.set(name, data);
-      } catch (e) {
-        console.error(`Failed to load data for ${name}`, e);
-      }
-    });
-    
-    // Also load NIFTY 50 if needed
+    // Prepare list of all indices to load
+    const indicesToLoad = [...indices];
     if (!isBroad && !indices.includes('NIFTY 50')) {
-        loadPromises.push((async () => {
-            try {
-                const data = await getIndexData('NIFTY 50');
-                dataMap.set('NIFTY 50', data);
-            } catch (e) {
-                console.error(`Failed to load data for NIFTY 50`, e);
-            }
-        })());
+      indicesToLoad.push('NIFTY 50');
     }
 
-    await Promise.all(loadPromises);
+    console.log(`📊 Loading data for ${indicesToLoad.length} indices...`);
+
+    // 1. Update and load all data in parallel
+    // Auto-updates all CSVs with latest data, then loads them
+    const dataMap = await getMultipleIndicesData(indicesToLoad, true);
 
     // 2. Calculate comparisons
-    const rows: any[] = [];
     const oneYear: number[] = [];
     const threeYear: number[] = [];
     const fiveYear: number[] = [];
@@ -114,8 +100,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json(result);
 
-  } catch (error: any) {
-    console.error('Dashboard API Error:', error);
-    return NextResponse.json({ error: error.message, stack: error.stack }, { status: 500 });
+  } catch (error) {
+    const err = error as Error;
+    console.error('Dashboard API Error:', err);
+    return NextResponse.json({ error: err.message, stack: err.stack }, { status: 500 });
   }
 }
